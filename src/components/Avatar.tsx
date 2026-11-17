@@ -1,3 +1,5 @@
+import { inspect } from "@/lib/inspect";
+
 type Props = {
   src: string | null;
   name: string;
@@ -15,6 +17,7 @@ export default function Avatar({ src, name, size = 96 }: Props) {
     // 아바타는 이미 작게 줄인 이미지이므로 일반 img 사용
     // eslint-disable-next-line @next/next/no-img-element
     <img
+      {...inspect("Avatar", "src/components/Avatar.tsx")}
       src={src ?? DEFAULT_AVATAR}
       alt={isDefault ? `${name} 기본 프로필 사진` : `${name} 프로필 사진`}
       width={size}

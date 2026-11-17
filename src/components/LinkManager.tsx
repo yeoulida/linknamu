@@ -9,7 +9,10 @@ import {
   type ActionResult,
 } from "@/lib/actions/admin";
 import type { AdminLink } from "@/lib/data";
+import { inspect } from "@/lib/inspect";
 import { getLinkIcon } from "@/lib/link-icon";
+
+const FILE = "src/components/LinkManager.tsx";
 import { LIMITS } from "@/lib/validation";
 
 const inputClass =
@@ -84,6 +87,7 @@ function AddLinkForm({ disabled }: { disabled: boolean }) {
 
   return (
     <form
+      {...inspect("AddLinkForm", FILE)}
       action={formAction}
       className="flex flex-col gap-3 rounded-2xl border border-dashed border-border p-4"
     >
@@ -129,7 +133,7 @@ function LinkRow({ link, index, total }: { link: AdminLink; index: number; total
 
   if (editing) {
     return (
-      <li className="rounded-2xl border border-brand bg-surface p-4">
+      <li {...inspect("LinkRow(수정 중)", FILE)} className="rounded-2xl border border-brand bg-surface p-4">
         <form action={formAction} className="flex flex-col gap-3">
           <input type="hidden" name="id" value={link.id} />
           <LinkFields title={title} url={url} onTitle={setTitle} onUrl={setUrl} />
@@ -168,6 +172,7 @@ function LinkRow({ link, index, total }: { link: AdminLink; index: number; total
 
   return (
     <li
+      {...inspect("LinkRow", FILE)}
       className={`rounded-2xl border border-border bg-surface p-3 transition ${busy ? "opacity-60" : ""}`}
     >
       <div className="flex items-start gap-3">
@@ -240,7 +245,7 @@ function LinkRow({ link, index, total }: { link: AdminLink; index: number; total
 
 export default function LinkManager({ links }: { links: AdminLink[] }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div {...inspect("LinkManager", FILE)} className="flex flex-col gap-4">
       {links.length > 0 ? (
         <ul className="flex flex-col gap-3">
           {links.map((link, i) => (

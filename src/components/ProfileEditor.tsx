@@ -8,6 +8,7 @@ import {
   uploadAvatar,
   type ActionResult,
 } from "@/lib/actions/admin";
+import { inspect } from "@/lib/inspect";
 import { AVATAR_SOURCE_TYPES, LIMITS } from "@/lib/validation";
 
 type Props = { name: string; bio: string; avatarUrl: string | null };
@@ -97,7 +98,10 @@ export default function ProfileEditor({ name, bio, avatarUrl }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div
+      {...inspect("ProfileEditor", "src/components/ProfileEditor.tsx")}
+      className="flex flex-col gap-6"
+    >
       <div className="flex items-center gap-4">
         <Avatar src={avatarUrl} name={name} size={80} />
         <div className="flex flex-wrap gap-2">

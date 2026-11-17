@@ -9,14 +9,24 @@ import ProfileEditor from "@/components/ProfileEditor";
 import { logout } from "@/lib/actions/auth";
 import { getSession } from "@/lib/auth";
 import { getAdminData } from "@/lib/data";
+import { inspect } from "@/lib/inspect";
 import { LIMITS } from "@/lib/validation";
 
 export const metadata: Metadata = { title: "관리", robots: { index: false } };
 
+const FILE = "src/app/admin/page.tsx";
+
 export default function AdminPage() {
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-6 sm:py-10">
-      <header className="mb-6 flex items-center justify-between">
+    <main
+      {...inspect("AdminPage", FILE)}
+      className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-6 sm:py-10"
+    >
+      {/* 오른쪽 위 화면 전환 버튼과 겹치지 않도록 오른쪽 여백(pr-12) */}
+      <header
+        {...inspect("AdminHeader", FILE)}
+        className="mb-6 flex items-center justify-between pr-12"
+      >
         <Link href="/" className="inline-flex items-center gap-2 font-bold">
           <span aria-hidden="true">🌳</span> 링크 나무
         </Link>
@@ -95,7 +105,10 @@ async function Dashboard() {
 
 function Section({ title, aside, children }: { title: string; aside?: ReactNode; children: ReactNode }) {
   return (
-    <section className="rounded-3xl border border-border bg-surface p-4 shadow-sm sm:p-6">
+    <section
+      {...inspect(`Section(${title})`, FILE)}
+      className="rounded-3xl border border-border bg-surface p-4 shadow-sm sm:p-6"
+    >
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-lg font-bold">{title}</h2>
         {aside}

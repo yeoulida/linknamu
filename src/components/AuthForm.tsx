@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { login, signup, type AuthState } from "@/lib/actions/auth";
+import { inspect } from "@/lib/inspect";
 import { LIMITS } from "@/lib/validation";
 
 const inputClass =
@@ -16,7 +17,11 @@ export default function AuthForm({ mode }: { mode: "login" | "signup" }) {
   );
 
   return (
-    <form action={formAction} className="flex flex-col gap-4">
+    <form
+      {...inspect("AuthForm", "src/components/AuthForm.tsx")}
+      action={formAction}
+      className="flex flex-col gap-4"
+    >
       <label className="block text-sm font-medium">
         이메일
         <input name="email" type="email" required autoComplete="email" className={inputClass} />

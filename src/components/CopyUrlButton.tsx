@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { inspect } from "@/lib/inspect";
 
 export default function CopyUrlButton({ url }: { url: string }) {
   const [copied, setCopied] = useState(false);
@@ -26,6 +27,7 @@ export default function CopyUrlButton({ url }: { url: string }) {
 
   return (
     <button
+      {...inspect("CopyUrlButton", "src/components/CopyUrlButton.tsx")}
       type="button"
       onClick={copy}
       className="min-h-11 shrink-0 rounded-full bg-brand px-5 text-sm font-semibold text-white transition hover:bg-brand-strong"

@@ -1,9 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { inspect } from "@/lib/inspect";
 
 export default function AuthCard({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-4 py-12">
+    <main
+      {...inspect("AuthCard", "src/components/AuthCard.tsx")}
+      className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-4 py-12"
+    >
       <Link href="/" className="mb-6 inline-flex items-center gap-2 self-start font-bold">
         <span aria-hidden="true">🌳</span> 링크 나무
       </Link>

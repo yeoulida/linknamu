@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
+/* html[data-theme="dark"]일 때 dark: 변형이 적용되도록 지정 */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* 밝은 화면 (기본) */
 :root {
+  color-scheme: light;
   --background: #f3f7f4;
   --surface: #ffffff;
   --foreground: #1c2420;
@@ -12,8 +17,24 @@
   --danger: #c0392b;
 }
 
+/* 어두운 화면 — 사용자가 직접 고른 경우 */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #121614;
+  --surface: #1b211e;
+  --foreground: #e8eeea;
+  --muted: #9aa8a0;
+  --border: #2c3631;
+  --brand: #5cb880;
+  --brand-strong: #7dcb9a;
+  --brand-soft: #1f3328;
+  --danger: #ef7d6f;
+}
+
+/* 어두운 화면 — 직접 고르지 않았고 기기가 다크 모드일 때 (스크립트가 꺼진 경우 대비) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --background: #121614;
     --surface: #1b211e;
     --foreground: #e8eeea;
@@ -46,4 +67,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   word-break: keep-all;
   overflow-wrap: anywhere;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { inspect } from "@/lib/inspect";
 import { getLinkIcon } from "@/lib/link-icon";
 
 type Props = { id: string; title: string; url: string };
@@ -19,6 +20,7 @@ function trackClick(id: string) {
 export default function LinkCard({ id, title, url }: Props) {
   return (
     <a
+      {...inspect("LinkCard", "src/components/LinkCard.tsx")}
       href={url}
       target="_blank"
       rel="noopener noreferrer"
@@ -26,9 +28,13 @@ export default function LinkCard({ id, title, url }: Props) {
       onAuxClick={(e) => {
         if (e.button === 1) trackClick(id); // 마우스 휠 클릭
       }}
-      className="group relative flex min-h-14 w-full items-center rounded-2xl border border-border bg-surface px-14 py-4 text-center font-medium shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:translate-y-0"
+      className="group relative flex min-h-14 w-full items-center rounded-2xl border border-border bg-surface px-16 py-4 text-center font-medium shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:translate-y-0"
     >
-      <span aria-hidden="true" className="absolute left-4 text-xl leading-none">
+      {/* 아이콘을 모서리가 둥근 사각형 배지 안에 표시 */}
+      <span
+        aria-hidden="true"
+        className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-soft text-xl leading-none transition group-hover:bg-brand/20"
+      >
         {getLinkIcon(url)}
       </span>
       <span className="w-full">{title}</span>
